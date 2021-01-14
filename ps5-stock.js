@@ -1,9 +1,8 @@
 /*
  *  Steps:
  *    1. Install the iOS [Scriptable](https://apps.apple.com/us/app/scriptable/id1405459188) app.
- *    2. Set your leaderboard ID and session cookie below.
- *    3. Import/Copy this script into it.
- *    4. Set up a home-screen widget with the script!
+ *    2. Import/Copy this script into it.
+ *    3. Set up a home-screen widget with the script!
  */
 
 const COLOR_CONFIG = {
