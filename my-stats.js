@@ -70,18 +70,22 @@ async function createWidget() {
     lastLoginLine.font = new Font("Menlo", 10);
 
 
-    const coffeeCount = stack.addText(`☕️ | ${coffeeStats.result.length}`);
+    const coffeeCount = coffeeStats.streak > 0 ? stack.addText(`☕️ ${coffeeStats.today} 🔥 ${coffeeStats.streak}`) : stack.addText(`☕️ ${coffeeStats.today}`);
     coffeeCount.font = FONT;
     coffeeCount.textColor = WHITE;
-    const sodaCount = stack.addText(`🍺 | ${beerStats.result.length}`);
+
+    const beerCount = beerStats.streak > 0 ? stack.addText(`🍺 ${beerStats.today} 🔥  ${beerStats.streak}`) : stack.addText(`🍺 ${beerStats.today}`);
+    beerCount.font = FONT;
+    beerCount.textColor = WHITE;
+
+    const sodaCount = sodaStats.streak > 0 ? stack.addText(`🥤 ${sodaStats.today} 🔥  ${sodaStats.streak}`) : stack.addText(`🥤 ${sodaStats.today} `);
     sodaCount.font = FONT;
     sodaCount.textColor = WHITE;
-    const text3 = stack.addText(`🥤 | ${sodaStats.result.length}`);
-    text3.font = FONT;
-    text3.textColor = WHITE;
-    const text4 = stack.addText(`💩 | ${poopStats.result.length}`);
-    text4.font = FONT;
-    text4.textColor = WHITE;
+
+    const poopCount = poopStats.streak > 0 ? stack.addText(`💩 ${poopStats.today} 🔥 ${poopStats.streak}`) : stack.addText(`💩 ${poopStats.today} `);
+
+    poopCount.font = FONT;
+    poopCount.textColor = WHITE;
 
     return widget;
 }
@@ -93,7 +97,19 @@ function createLinearGradient(color1, color2) {
     return gradient;
 }
 
+
+function drawLine(x1, y1, x2, y2, width, color) {
+    const path = new Path()
+    path.move(new Point(x1, y1))
+    path.addLine(new Point(x2, y2))
+    drawContext.addPath(path)
+    drawContext.setStrokeColor(color)
+    drawContext.setLineWidth(width)
+    drawContext.strokePath()
+}
+
 const widget = await createWidget();
 
-Script.setWidget(widget);
+// Script.setWidget(widget);
+widget.presentMedium()
 Script.complete();
